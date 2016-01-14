@@ -1,53 +1,36 @@
-var Originator = (function () {
-    function Originator() {
+class Originator {
+    constructor() {
         this._status = 'stopped';
     }
-    Originator.prototype.createMememto = function () {
+    createMememto() {
         return new Mememto(this._status);
-    };
-    Originator.prototype.setMememto = function (mememto) {
+    }
+    setMememto(mememto) {
         this._status = mememto.status;
-    };
-    Object.defineProperty(Originator.prototype, "status", {
-        get: function () {
-            return this._status;
-        },
-        set: function (status) {
-            this._status = status;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return Originator;
-})();
-var Mememto = (function () {
-    function Mememto(stauts) {
+    }
+    get status() {
+        return this._status;
+    }
+    set status(status) {
+        this._status = status;
+    }
+}
+class Mememto {
+    constructor(stauts) {
         this._status = stauts;
     }
-    Object.defineProperty(Mememto.prototype, "status", {
-        get: function () {
-            return this._status;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return Mememto;
-})();
-var CareTaker = (function () {
-    function CareTaker() {
+    get status() {
+        return this._status;
     }
-    Object.defineProperty(CareTaker.prototype, "mememto", {
-        get: function () {
-            return this._mememto;
-        },
-        set: function (mememto) {
-            this._mememto = mememto;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return CareTaker;
-})();
+}
+class CareTaker {
+    get mememto() {
+        return this._mememto;
+    }
+    set mememto(mememto) {
+        this._mememto = mememto;
+    }
+}
 var originator = new Originator();
 var careTaker = new CareTaker();
 console.log(originator.status);

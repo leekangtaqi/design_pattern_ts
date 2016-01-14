@@ -1,55 +1,35 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 /**
  * intention: Adding additional abilities to an object dynamically
  */
-var Component = (function () {
-    function Component() {
-    }
-    Component.prototype.operate = function () { };
-    return Component;
-})();
-var ConcreteComponent = (function (_super) {
-    __extends(ConcreteComponent, _super);
-    function ConcreteComponent() {
-        _super.apply(this, arguments);
-    }
-    ConcreteComponent.prototype.operate = function () {
+class Component {
+    operate() { }
+}
+class ConcreteComponent extends Component {
+    operate() {
         console.log('origin operation');
-    };
-    return ConcreteComponent;
-})(Component);
-var Decorator = (function (_super) {
-    __extends(Decorator, _super);
-    function Decorator(component) {
-        _super.call(this);
+    }
+}
+class Decorator extends Component {
+    constructor(component) {
+        super();
         this.component = component;
     }
-    Decorator.prototype.decorate = function (component) {
+    decorate(component) {
         this.component = component;
-    };
-    Decorator.prototype.operate = function () {
+    }
+    operate() {
         this.component.operate();
-    };
-    return Decorator;
-})(Component);
-var addBehaviorDecorator = (function (_super) {
-    __extends(addBehaviorDecorator, _super);
-    function addBehaviorDecorator() {
-        _super.apply(this, arguments);
     }
-    addBehaviorDecorator.prototype.addBehavior = function () {
+}
+class addBehaviorDecorator extends Decorator {
+    addBehavior() {
         console.log('behavior added');
-    };
-    addBehaviorDecorator.prototype.operate = function () {
+    }
+    operate() {
         this.addBehavior();
-        _super.prototype.operate.call(this);
-    };
-    return addBehaviorDecorator;
-})(Decorator);
+        super.operate();
+    }
+}
 var component = new ConcreteComponent();
 var decorator = new addBehaviorDecorator(component);
 decorator.operate();

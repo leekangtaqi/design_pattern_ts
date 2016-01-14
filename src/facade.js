@@ -1,30 +1,23 @@
-var SubsystemA = (function () {
-    function SubsystemA() {
-    }
-    SubsystemA.prototype.methodA = function () {
+class SubsystemA {
+    methodA() {
         console.log('system method A is invoked');
-    };
-    return SubsystemA;
-})();
-var SubsystemB = (function () {
-    function SubsystemB() {
     }
-    SubsystemB.prototype.methodB = function () {
+}
+class SubsystemB {
+    methodB() {
         console.log('system method B is invoked');
-    };
-    return SubsystemB;
-})();
-var Facade = (function () {
-    function Facade() {
+    }
+}
+class Facade {
+    constructor() {
         this.subSystemA = new SubsystemA();
         this.subSystemB = new SubsystemB();
     }
-    Facade.prototype.method = function () {
+    method() {
         this.subSystemA.methodA();
         this.subSystemB.methodB();
-    };
-    return Facade;
-})();
+    }
+}
 var facade = new Facade();
 facade.method();
 //# sourceMappingURL=facade.js.map

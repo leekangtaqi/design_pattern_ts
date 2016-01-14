@@ -1,17 +1,16 @@
-var PrototypeA = (function () {
-    function PrototypeA() {
+class PrototypeA {
+    constructor() {
         this._name = 'test';
     }
     ;
-    PrototypeA.prototype.clone = function () {
+    clone() {
         var proto = new PrototypeA();
         for (var prop in this) {
             proto[prop] = this[prop];
         }
         return new PrototypeA();
-    };
-    return PrototypeA;
-})();
+    }
+}
 var protoA = new PrototypeA();
 var protoB = protoA.clone();
 console.log(protoA);

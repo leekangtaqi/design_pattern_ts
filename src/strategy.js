@@ -1,55 +1,32 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 /**
  * intention: Define a series of related algorithms, allow them can be replaced with each other
  */
-var Strategy = (function () {
-    function Strategy() {
-    }
-    return Strategy;
-})();
-var Context = (function () {
-    function Context(strategy) {
+class Strategy {
+}
+class Context {
+    constructor(strategy) {
         this.strategy = strategy;
     }
-    Context.prototype.calculate = function () {
+    calculate() {
         this.strategy.calculate();
-    };
-    Object.defineProperty(Context.prototype, "strategy", {
-        get: function () {
-            return this._strategy;
-        },
-        set: function (strategy) {
-            this._strategy = strategy;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return Context;
-})();
-var StrategyA = (function (_super) {
-    __extends(StrategyA, _super);
-    function StrategyA() {
-        _super.apply(this, arguments);
     }
-    StrategyA.prototype.calculate = function () {
+    get strategy() {
+        return this._strategy;
+    }
+    set strategy(strategy) {
+        this._strategy = strategy;
+    }
+}
+class StrategyA extends Strategy {
+    calculate() {
         console.log('a');
-    };
-    return StrategyA;
-})(Strategy);
-var StrategyB = (function (_super) {
-    __extends(StrategyB, _super);
-    function StrategyB() {
-        _super.apply(this, arguments);
     }
-    StrategyB.prototype.calculate = function () {
+}
+class StrategyB extends Strategy {
+    calculate() {
         console.log('b');
-    };
-    return StrategyB;
-})(Strategy);
+    }
+}
 var context = new Context(new StrategyA());
 context.calculate();
 context.strategy = new StrategyB();
