@@ -1,6 +1,7 @@
 /**
  * intention: 创建一系列相关的产品
  */
+module factory{}
 abstract class CarFactory{
     constructor(){}
     createTire(){}
